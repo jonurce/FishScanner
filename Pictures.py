@@ -1,52 +1,98 @@
-import cv2
 import os
-from threading import Thread
+import ctypes
+import subprocess
+import sys
+import cv2
 
-def get_camera_indices():
-    indices = []
-    for i in range(10):  # Check up to 10 indices
-        cap = cv2.VideoCapture(i)
-        if cap.isOpened():
-            indices.append(i)
-            cap.release()
-    return indices
 
-def capture_from_camera(index, folder_name):
-    cap = cv2.VideoCapture(index)
-    if cap.isOpened():
+def is_admin():
+    """Check if the script is running as an administrator."""
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+
+def run_as_admin():
+    """Re-run the script as administrator."""
+    if not is_admin():
+        print("Requesting administrator privileges...")
+        ctypes.windll.shell32.ShellExecuteW(
+            None, "runas", sys.executable, " ".join(sys.argv), None, 1
+        )
+        sys.exit()
+
+
+def disable_integrated_camera():
+    """Disables the integrated camera using PowerShell."""
+    command = (
+        'powershell "Get-PnpDevice -FriendlyName \'*Integrated Camera*\' | '
+        'Disable-PnpDevice -Confirm:$false"'
+    )
+    try:
+        print("Disabling the integrated camera...")
+        result = subprocess.run(
+            command, shell=True, check=True, text=True, capture_output=True
+        )
+        print(result.stdout)
+        print("Integrated camera disabled successfully.")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to disable the integrated camera: {e}")
+        print(f"Error output: {e.stderr}")
+        return False
+
+
+def get_available_cameras():
+    """Returns a list of indexes for available cameras."""
+    index = 0
+    available_cameras = []
+    while True:
+        cap = cv2.VideoCapture(index)
+        if not cap.isOpened():
+            break
+        available_cameras.append(index)
+        cap.release()
+        index += 1
+    return available_cameras
+
+
+def capture_images_from_cameras():
+    """Captures images from all available cameras."""
+    cameras = get_available_cameras()
+    if not cameras:
+        print("No cameras available to capture images.")
+        return
+
+    print(f"Available cameras: {cameras}")
+    for cam_index in cameras:
+        cap = cv2.VideoCapture(cam_index)
+        if not cap.isOpened():
+            print(f"Unable to access camera {cam_index}")
+            continue
+
         ret, frame = cap.read()
         if ret:
-            filename = os.path.join(folder_name, f"camera_{index}.jpg")
+            filename = f"camera_{cam_index}.jpg"
             cv2.imwrite(filename, frame)
-            print(f"Image saved from Camera {index} as {filename}")
+            print(f"Image saved from camera {cam_index} as {filename}")
         else:
-            print(f"Failed to capture image from Camera {index}")
+            print(f"Failed to capture image from camera {cam_index}")
+
         cap.release()
-    else:
-        print(f"Camera {index} is not accessible")
 
-def capture_images_from_all_cameras(camera_indices, folder_name="3d_model_input"):
-    if not os.path.exists(folder_name):
-        try:
-            os.makedirs(folder_name)
-        except Exception as e:
-            print(f"Error creating folder '{folder_name}': {e}")
-            return
+    print("Done capturing images.")
 
-    threads = []
-    for index in camera_indices:
-        t = Thread(target=capture_from_camera, args=(index, folder_name))
-        threads.append(t)
-        t.start()
-
-    for t in threads:
-        t.join()
 
 if __name__ == "__main__":
-    camera_indices = get_camera_indices()
-    print("Detected cameras:", camera_indices)
+    # Ensure the script runs as admin
+    run_as_admin()
 
-    if camera_indices:
-        capture_images_from_all_cameras(camera_indices, folder_name="3d_model_input")
+    # Disable the integrated camera
+    disabled = disable_integrated_camera()
+
+    if disabled:
+        # Proceed to capture images from the remaining cameras
+        capture_images_from_cameras()
     else:
-        print("No cameras found.")
+        print("Unable to disable the integrated camera. Aborting.")
