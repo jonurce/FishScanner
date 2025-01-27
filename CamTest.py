@@ -1,6 +1,6 @@
 import cv2
 
-index = 4  # Replace with the index of the problematic camera
+index = 3  # Replace with the index of the problematic camera
 cap = cv2.VideoCapture(index)
 if cap.isOpened():
     ret, frame = cap.read()

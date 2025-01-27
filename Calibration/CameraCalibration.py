@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 
-def calibrate_camera(images_dir, pattern_size=(9, 6), square_size=0.025):
+def calibrate_camera(images_dir, pattern_size=(7, 6), square_size=0.035):
     """
     Calibrate the camera using checkerboard images.
 

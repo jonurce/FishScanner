@@ -108,11 +108,10 @@ def main(image_folder, K):
 
 if __name__ == "__main__":
     # Folder containing captured images
-    #image_folder = "captured_images"
-    image_folder = "BurnPictures"
+    image_folder = "test_images"
 
     # Camera intrinsic matrix (example values, adjust based on your camera)
-    K = np.array([[600, 0, 640], [0, 600, 360], [0, 0, 1]])
+    K = np.array([[495.21153939, 0, 335.75450282], [0, 504.81851369, 179.00894773], [0, 0, 1]])
 
     # Run the reconstruction pipeline
     main(image_folder, K)
