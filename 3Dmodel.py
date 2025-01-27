@@ -74,7 +74,7 @@ def create_3d_mesh(point_cloud):
     return mesh
 
 
-def save_mesh(mesh, output_file="output_mesh.ply"):
+def save_mesh(mesh, output_file="output_mesh.obj"):
     """Save the mesh to a file."""
     o3d.io.write_triangle_mesh(output_file, mesh)
     print(f"3D model saved as {output_file}")
@@ -108,10 +108,11 @@ def main(image_folder, K):
 
 if __name__ == "__main__":
     # Folder containing captured images
-    image_folder = "captured_images"
+    #image_folder = "captured_images"
+    image_folder = "BurnPictures"
 
     # Camera intrinsic matrix (example values, adjust based on your camera)
-    K = np.array([[1000, 0, 320], [0, 1000, 240], [0, 0, 1]])
+    K = np.array([[600, 0, 640], [0, 600, 360], [0, 0, 1]])
 
     # Run the reconstruction pipeline
     main(image_folder, K)
