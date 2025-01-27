@@ -23,18 +23,39 @@ def run_as_admin():
         sys.exit()
 
 
+def is_integrated_camera_active():
+    """Check if the integrated camera is active using PowerShell."""
+    camera_name = "*Integrated Camera*"
+    check_command = f'powershell "Get-PnpDevice -FriendlyName \'{camera_name}\' | Where-Object {{ $_.Status -eq \'OK\' }}"'
+
+    try:
+        print("Checking if the integrated camera is active...")
+        result_check = subprocess.run(
+            check_command, shell=True, check=True, capture_output=True, text=True
+        )
+        if "OK" in result_check.stdout:
+            print("Integrated camera is active.")
+            return True
+        else:
+            print("Integrated camera is not active or not found.")
+            return False
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to check the status of the integrated camera: {e}")
+        print(f"Error output: {e.stderr}")
+        return False
+
+
 def disable_integrated_camera():
     """Disables the integrated camera using PowerShell."""
-    command = (
-        'powershell "Get-PnpDevice -FriendlyName \'*Integrated Camera*\' | '
-        'Disable-PnpDevice -Confirm:$false"'
-    )
+    camera_name = "*Integrated Camera*"
+    disable_command = f'powershell "Get-PnpDevice -FriendlyName \'{camera_name}\' | Disable-PnpDevice -Confirm:$false"'
+
     try:
         print("Disabling the integrated camera...")
-        result = subprocess.run(
-            command, shell=True, check=True, text=True, capture_output=True
+        result_disable = subprocess.run(
+            disable_command, shell=True, check=True, capture_output=True, text=True
         )
-        print(result.stdout)
+        print(result_disable.stdout)
         print("Integrated camera disabled successfully.")
         return True
     except subprocess.CalledProcessError as e:
@@ -57,11 +78,14 @@ def get_available_cameras():
     return available_cameras
 
 
-def capture_images_from_cameras():
-    """Captures images from all available cameras."""
+def capture_images_from_cameras(output_folder="captured_images"):
+    """Captures images from all available cameras and saves them to the output folder."""
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
     cameras = get_available_cameras()
     if not cameras:
-        print("No cameras available to capture images.")
+        print("No cameras available.")
         return
 
     print(f"Available cameras: {cameras}")
@@ -73,26 +97,33 @@ def capture_images_from_cameras():
 
         ret, frame = cap.read()
         if ret:
-            filename = f"camera_{cam_index}.jpg"
+            filename = os.path.join(output_folder, f"camera_{cam_index}.jpg")
             cv2.imwrite(filename, frame)
-            print(f"Image saved from camera {cam_index} as {filename}")
+            print(f"Image captured from camera {cam_index} and saved as {filename}")
         else:
             print(f"Failed to capture image from camera {cam_index}")
 
         cap.release()
 
-    print("Done capturing images.")
+    print("Image capture complete.")
 
 
 if __name__ == "__main__":
     # Ensure the script runs as admin
     run_as_admin()
 
-    # Disable the integrated camera
-    disabled = disable_integrated_camera()
-
-    if disabled:
-        # Proceed to capture images from the remaining cameras
-        capture_images_from_cameras()
+    # Check and disable the integrated camera if it is active
+    if is_integrated_camera_active():
+        disabled = disable_integrated_camera()
+        if disabled:
+            print("Integrated camera disabled successfully.")
+        else:
+            print("Failed to disable the integrated camera.")
     else:
-        print("Unable to disable the integrated camera. Aborting.")
+        print("Integrated camera is not active. Skipping deactivation.")
+
+    # Output folder for captured images
+    output_folder = "captured_images"
+
+    # Capture images from all available cameras
+    capture_images_from_cameras(output_folder)
