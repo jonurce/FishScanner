@@ -1,170 +1,117 @@
-import os
-import ctypes
-import subprocess
-import sys
 import cv2
+import numpy as np
+import open3d as o3d
+import os
 
 
-def is_admin():
-    """Check if the script is running as an administrator."""
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
+def detect_and_match_features(image1, image2):
+    """Detect and match features between two images using SIFT."""
+    # Initialize SIFT detector
+    sift = cv2.SIFT_create()
+
+    # Detect keypoints and compute descriptors
+    kp1, des1 = sift.detectAndCompute(image1, None)
+    kp2, des2 = sift.detectAndCompute(image2, None)
+
+    # Use FLANN-based matcher
+    index_params = dict(algorithm=1, trees=5)  # KD-Tree
+    search_params = dict(checks=50)
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    matches = flann.knnMatch(des1, des2, k=2)
+
+    # Filter matches using Lowe's ratio test
+    good_matches = []
+    for m, n in matches:
+        if m.distance < 0.7 * n.distance:
+            good_matches.append(m)
+
+    return kp1, kp2, good_matches
 
 
-def run_as_admin():
-    """Re-run the script as administrator."""
-    if not is_admin():
-        print("Requesting administrator privileges...")
-        ctypes.windll.shell32.ShellExecuteW(
-            None, "runas", sys.executable, " ".join(sys.argv), None, 1
-        )
-        sys.exit()
+def compute_point_cloud(matches, kp1, kp2, K):
+    """Compute a sparse point cloud using matched features and camera matrix K."""
+    # Extract matched keypoints
+    points1 = np.array([kp1[m.queryIdx].pt for m in matches])
+    points2 = np.array([kp2[m.trainIdx].pt for m in matches])
+
+    # Estimate the essential matrix
+    E, mask = cv2.findEssentialMat(points1, points2, K, method=cv2.RANSAC, prob=0.999, threshold=1.0)
+
+    # Recover the relative camera pose
+    _, R, t, mask_pose = cv2.recoverPose(E, points1, points2, K)
+
+    # Triangulate points to generate a sparse point cloud
+    points1_hom = cv2.convertPointsToHomogeneous(points1).reshape(-1, 3).T
+    points2_hom = cv2.convertPointsToHomogeneous(points2).reshape(-1, 3).T
+
+    P1 = np.dot(K, np.hstack((np.eye(3), np.zeros((3, 1)))))  # Projection matrix of camera 1
+    P2 = np.dot(K, np.hstack((R, t)))  # Projection matrix of camera 2
+
+    points_4d = cv2.triangulatePoints(P1, P2, points1.T, points2.T)
+    points_3d = points_4d[:3] / points_4d[3]  # Convert to 3D
+
+    return points_3d.T
 
 
-def disable_integrated_camera():
-    """Disables the integrated camera using PowerShell."""
-    check_command = 'powershell "Get-PnpDevice -FriendlyName \'*Integrated Camera*\'"'
-    disable_command = (
-        'powershell "Get-PnpDevice -FriendlyName \'*Integrated Camera*\' | '
-        'Disable-PnpDevice -Confirm:$false"'
-    )
-    try:
-        print("Checking for the integrated camera...")
-        result_check = subprocess.run(
-            check_command, shell=True, check=True, capture_output=True, text=True
-        )
-        if "*Integrated Camera*" not in result_check.stdout:
-            print("No integrated camera found. Skipping disable step.")
-            return False
-
-        print("Integrated camera detected. Disabling it now...")
-        result_disable = subprocess.run(
-            disable_command, shell=True, check=True, capture_output=True, text=True
-        )
-        print(result_disable.stdout)
-        print("Integrated camera disabled successfully.")
-        return True
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to disable the integrated camera: {e}")
-        print(f"Error output: {e.stderr}")
-        return False
+def generate_dense_point_cloud(sparse_cloud):
+    """Convert sparse cloud into dense point cloud (dummy example for now)."""
+    # This function can be enhanced with a real densification algorithm
+    dense_cloud = sparse_cloud  # Placeholder: You can use MVS libraries for densification
+    return dense_cloud
 
 
-def get_available_cameras():
-    """Returns a list of indexes for available cameras."""
-    index = 0
-    available_cameras = []
-    while True:
-        cap = cv2.VideoCapture(index)
-        if not cap.isOpened():
-            break
-        available_cameras.append(index)
-        cap.release()
-        index += 1
-    return available_cameras
+def create_3d_mesh(point_cloud):
+    """Create a 3D mesh from a point cloud using Open3D."""
+    # Convert point cloud to Open3D format
+    o3d_cloud = o3d.geometry.PointCloud()
+    o3d_cloud.points = o3d.utility.Vector3dVector(point_cloud)
+
+    # Estimate normals for better meshing
+    o3d_cloud.estimate_normals()
+
+    # Create a mesh using Poisson reconstruction
+    mesh, _ = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(o3d_cloud, depth=8)
+    return mesh
 
 
-def capture_images_from_cameras(output_folder):
-    """Captures images from all available cameras and saves them to the output folder."""
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+def save_mesh(mesh, output_file="output_mesh.ply"):
+    """Save the mesh to a file."""
+    o3d.io.write_triangle_mesh(output_file, mesh)
+    print(f"3D model saved as {output_file}")
 
-    cameras = get_available_cameras()
-    if not cameras:
-        print("No cameras available to capture images.")
+
+def main(image_folder, K):
+    """Main pipeline for 3D reconstruction."""
+    # Load images
+    image_files = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(".jpg")]
+    images = [cv2.imread(f) for f in sorted(image_files)]
+
+    if len(images) < 2:
+        print("At least two images are required for 3D reconstruction.")
         return
 
-    print(f"Available cameras: {cameras}")
-    for cam_index in cameras:
-        cap = cv2.VideoCapture(cam_index)
-        if not cap.isOpened():
-            print(f"Unable to access camera {cam_index}")
-            continue
+    # Detect and match features between the first two images
+    kp1, kp2, matches = detect_and_match_features(images[0], images[1])
 
-        ret, frame = cap.read()
-        if ret:
-            filename = os.path.join(output_folder, f"camera_{cam_index}.jpg")
-            cv2.imwrite(filename, frame)
-            print(f"Image saved from camera {cam_index} as {filename}")
-        else:
-            print(f"Failed to capture image from camera {cam_index}")
+    # Compute sparse point cloud
+    sparse_cloud = compute_point_cloud(matches, kp1, kp2, K)
 
-        cap.release()
+    # Generate dense point cloud
+    dense_cloud = generate_dense_point_cloud(sparse_cloud)
 
-    print("Done capturing images.")
+    # Create a 3D mesh
+    mesh = create_3d_mesh(dense_cloud)
 
-
-def create_3d_model_with_alicevision(images_folder, output_folder):
-    """Creates a 3D model using AliceVision from the captured images."""
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
-    try:
-        # Step 1: Initialize the camera parameters
-        print("Initializing camera parameters...")
-        camera_init_output = os.path.join(output_folder, "cameraInit.sfm")
-        subprocess.run(
-            [
-                "aliceVision_cameraInit",
-                "--input", images_folder,
-                "--output", camera_init_output,
-                "--allowSingleView", "1"
-            ],
-            check=True,
-        )
-
-        # Step 2: Feature extraction
-        print("Extracting features...")
-        feature_output = os.path.join(output_folder, "features")
-        subprocess.run(
-            [
-                "aliceVision_featureExtraction",
-                "--input", camera_init_output,
-                "--output", feature_output,
-            ],
-            check=True,
-        )
-
-        # Step 3: Create a 3D model
-        print("Generating 3D model...")
-        model_output = os.path.join(output_folder, "3D_model.obj")
-        subprocess.run(
-            [
-                "aliceVision_sfmAlignment",
-                "--input", feature_output,
-                "--output", model_output,
-            ],
-            check=True,
-        )
-
-        print(f"3D model created successfully. Saved at {model_output}")
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to process images with AliceVision: {e}")
-        print(f"Command output: {e.stderr}")
+    # Save the mesh to a file
+    save_mesh(mesh)
 
 
 if __name__ == "__main__":
-    # Ensure the script runs as admin
-    run_as_admin()
+    # Folder containing captured images
+    image_folder = "captured_images"
 
-    # Disable the integrated camera
-    disabled = disable_integrated_camera()
+    # Camera intrinsic matrix (example values, adjust based on your camera)
+    K = np.array([[1000, 0, 320], [0, 1000, 240], [0, 0, 1]])
 
-    if disabled:
-        print("Integrated camera disabled successfully. Proceeding to capture images...")
-    else:
-        print("Could not disable the integrated camera. Proceeding anyway...")
-
-    # Output folders
-    images_folder = "captured_images"
-    model_output_folder = "3d_model_output"
-
-    # Step 1: Capture images from cameras
-    print("Capturing images from cameras...")
-    capture_images_from_cameras(images_folder)
-
-    # Step 2: Create a 3D model from the captured images using AliceVision
-    print("Creating a 3D model from the captured images...")
-    create_3d_model_with_alicevision(images_folder, model_output_folder)
+    # Run the reconstruction pipeline
+    main(image_folder, K)
