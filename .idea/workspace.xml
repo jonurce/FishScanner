@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Calibrating camera">
-      <change afterPath="$PROJECT_DIR$/Calibration/CalibrationPicturesShoot.py" afterDir="false" />
+    <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Not sure if Open3D works">
+      <change afterPath="$PROJECT_DIR$/OverlapPercentage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3Dmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/3Dmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CamTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/CamTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CameraCalibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration/CameraCalibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/CameraCalibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration/CameraCalibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VisualiseMesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/VisualiseMesh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/captured_images/camera_0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/captured_images/camera_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/captured_images/camera_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/captured_images/camera_3.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +58,7 @@
     "Python.CamTest.executor": "Run",
     "Python.CameraCalibration.executor": "Run",
     "Python.FishScan.executor": "Run",
+    "Python.OverlapPercentage.executor": "Run",
     "Python.Pictures.executor": "Run",
     "Python.ReadMesh.executor": "Run",
     "Python.Try.executor": "Run",
@@ -97,7 +102,8 @@
       <workItem from="1737723883805" duration="7902000" />
       <workItem from="1737733906602" duration="7743000" />
       <workItem from="1737992983661" duration="366000" />
-      <workItem from="1737996179567" duration="6059000" />
+      <workItem from="1737996179567" duration="6117000" />
+      <workItem from="1738077913957" duration="10210000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -179,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738000302852</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Not sure if Open3D works">
+      <option name="closed" value="true" />
+      <created>1738002334925</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738002334925</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,17 +204,19 @@
     <MESSAGE value="Pictures" />
     <MESSAGE value="First 3D Model (shit)" />
     <MESSAGE value="Calibrating camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="Calibrating camera" />
+    <MESSAGE value="Not sure if Open3D works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Not sure if Open3D works" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FishScan$FishScan.coverage" NAME="FishScan Coverage Results" MODIFIED="1737729488066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Try.coverage" NAME="Try Coverage Results" MODIFIED="1737729381668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$VisualiseMesh.coverage" NAME="VisualiseMesh Coverage Results" MODIFIED="1738002267884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$VisualiseMesh.coverage" NAME="VisualiseMesh Coverage Results" MODIFIED="1738087126554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$OverlapPercentage.coverage" NAME="OverlapPercentage Coverage Results" MODIFIED="1738087038224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$ReadMesh.coverage" NAME="ReadMesh Coverage Results" MODIFIED="1737999277623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CamTest.coverage" NAME="CamTest Coverage Results" MODIFIED="1738001405742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CalibrationPicturesShoot.coverage" NAME="CalibrationPicturesShoot Coverage Results" MODIFIED="1738002056233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
-    <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1737996822381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738002260576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1738001840401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
+    <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1738081970427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738087425832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1738083765671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
   </component>
 </project>

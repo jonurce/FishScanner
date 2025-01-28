@@ -77,3 +77,6 @@ if __name__ == "__main__":
         intrinsic_matrix = results["mtx"]
         print("Intrinsic Matrix:")
         print(intrinsic_matrix)
+
+# Camera intrinsic matrix obtained
+# K = np.array([[495.21153939, 0, 335.75450282], [0, 504.81851369, 179.00894773], [0, 0, 1]])

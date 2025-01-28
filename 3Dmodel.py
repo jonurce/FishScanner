@@ -1,117 +1,156 @@
+import os
 import cv2
 import numpy as np
 import open3d as o3d
-import os
 
 
-def detect_and_match_features(image1, image2):
-    """Detect and match features between two images using SIFT."""
-    # Initialize SIFT detector
-    sift = cv2.SIFT_create()
-
-    # Detect keypoints and compute descriptors
-    kp1, des1 = sift.detectAndCompute(image1, None)
-    kp2, des2 = sift.detectAndCompute(image2, None)
-
-    # Use FLANN-based matcher
-    index_params = dict(algorithm=1, trees=5)  # KD-Tree
-    search_params = dict(checks=50)
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
-    matches = flann.knnMatch(des1, des2, k=2)
-
-    # Filter matches using Lowe's ratio test
-    good_matches = []
-    for m, n in matches:
-        if m.distance < 0.7 * n.distance:
-            good_matches.append(m)
-
-    return kp1, kp2, good_matches
+# Function to load images from the folder
+def load_images_from_folder(folder):
+    images = []
+    for filename in sorted(os.listdir(folder)):
+        img_path = os.path.join(folder, filename)
+        img = cv2.imread(img_path)
+        if img is not None:
+            images.append(img)
+    return images
 
 
-def compute_point_cloud(matches, kp1, kp2, K):
-    """Compute a sparse point cloud using matched features and camera matrix K."""
-    # Extract matched keypoints
-    points1 = np.array([kp1[m.queryIdx].pt for m in matches])
-    points2 = np.array([kp2[m.trainIdx].pt for m in matches])
+# Detect and match features
+def detect_and_match_features(images):
+    sift = cv2.SIFT_create(nfeatures=3000)
+    orb = cv2.ORB_create(nfeatures=10000)
+    keypoints = []
+    descriptors = []
+    matches = []
 
-    # Estimate the essential matrix
-    E, mask = cv2.findEssentialMat(points1, points2, K, method=cv2.RANSAC, prob=0.999, threshold=1.0)
+    for i in range(len(images) - 1):
+        # Convert to grayscale
+        gray1 = cv2.cvtColor(images[i], cv2.COLOR_BGR2GRAY)
+        gray2 = cv2.cvtColor(images[i+1], cv2.COLOR_BGR2GRAY)
 
-    # Recover the relative camera pose
-    _, R, t, mask_pose = cv2.recoverPose(E, points1, points2, K)
+        #Equalize histograms
+        equalized1 = cv2.equalizeHist(gray1)
+        equalized2 = cv2.equalizeHist(gray2)
 
-    # Triangulate points to generate a sparse point cloud
-    points1_hom = cv2.convertPointsToHomogeneous(points1).reshape(-1, 3).T
-    points2_hom = cv2.convertPointsToHomogeneous(points2).reshape(-1, 3).T
+        #Blur the images
+        blurred1 = cv2.GaussianBlur(equalized1, (5, 5), 0)
+        blurred2 = cv2.GaussianBlur(equalized2, (5, 5), 0)
 
-    P1 = np.dot(K, np.hstack((np.eye(3), np.zeros((3, 1)))))  # Projection matrix of camera 1
-    P2 = np.dot(K, np.hstack((R, t)))  # Projection matrix of camera 2
+        # Detect ORB features and descriptors
+        kp1, des1 = sift.detectAndCompute(images[i], None)
+        kp2, des2 = sift.detectAndCompute(images[i+1], None)
 
-    points_4d = cv2.triangulatePoints(P1, P2, points1.T, points2.T)
-    points_3d = points_4d[:3] / points_4d[3]  # Convert to 3D
+        #kp1, des1 = sift.detectAndCompute(images[i], None)
+        #kp2, des2 = sift.detectAndCompute(images[i+1], None)
 
-    return points_3d.T
+        # Match features
+        bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
+        raw_matches = bf.match(des1, des2)
+        raw_matches = sorted(raw_matches, key=lambda x: x.distance)
 
+        # Store results
+        keypoints.append((kp1, kp2))
+        descriptors.append((des1, des2))
+        matches.append(raw_matches)
 
-def generate_dense_point_cloud(sparse_cloud):
-    """Convert sparse cloud into dense point cloud (dummy example for now)."""
-    # This function can be enhanced with a real densification algorithm
-    dense_cloud = sparse_cloud  # Placeholder: You can use MVS libraries for densification
-    return dense_cloud
+        #Debug: draw matches
+        #img_matches = cv2.drawMatches(images[i], kp1, images[i + 1], kp2, raw_matches[:50], None)
+        #cv2.imshow("Matches", img_matches)
+        #cv2.waitKey(0)
 
+    #Debug:
+    print(f"Number of matches: {[len(m) for m in matches]}")
 
-def create_3d_mesh(point_cloud):
-    """Create a 3D mesh from a point cloud using Open3D."""
-    # Convert point cloud to Open3D format
-    o3d_cloud = o3d.geometry.PointCloud()
-    o3d_cloud.points = o3d.utility.Vector3dVector(point_cloud)
-
-    # Estimate normals for better meshing
-    o3d_cloud.estimate_normals()
-
-    # Create a mesh using Poisson reconstruction
-    mesh, _ = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(o3d_cloud, depth=8)
-    return mesh
-
-
-def save_mesh(mesh, output_file="output_mesh.obj"):
-    """Save the mesh to a file."""
-    o3d.io.write_triangle_mesh(output_file, mesh)
-    print(f"3D model saved as {output_file}")
+    return keypoints, descriptors, matches
 
 
-def main(image_folder, K):
-    """Main pipeline for 3D reconstruction."""
-    # Load images
-    image_files = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(".jpg")]
-    images = [cv2.imread(f) for f in sorted(image_files)]
+# Reconstruct sparse 3D point cloud
+def reconstruct_3d(matches, keypoints, images):
+    # Placeholder for SfM pipeline. This is typically complex and may require tools like COLMAP or OpenMVG.
+    # Intrinsic matrix:
+    K = np.array([[495.21153939, 0, 335.75450282], [0, 504.81851369, 179.00894773], [0, 0, 1]])
+    points_3d = []
 
-    if len(images) < 2:
-        print("At least two images are required for 3D reconstruction.")
+    print(f"Starting 3D reconstruction with {len(matches)} image pairs.")
+
+    for i, match_set in enumerate(matches):
+        print(f"Processing Image pair {i}")
+        print(f"Number of matches: {len(match_set)}")
+
+        kp1, kp2 = keypoints[i]
+        pts1 = np.float32([kp1[m.queryIdx].pt for m in match_set])
+        pts2 = np.float32([kp2[m.trainIdx].pt for m in match_set])
+
+        print(f"Triangulating {len(pts1)} points.")
+
+        if len(pts1) < 8:  # Not enough points for essential matrix calculation
+            print(f"Skipping frame {i} -> {i + 1}: Not enough matches.")
+            continue
+
+        E, _ = cv2.findEssentialMat(pts1, pts2, K, method=cv2.RANSAC, prob=0.999, threshold=2.0)
+        _, R, t, _ = cv2.recoverPose(E, pts1, pts2, K)
+
+        # Essential Matrix Debugging
+        print(f"Essential matrix inliers: {np.sum(_)}")
+
+        # Triangulate points (example)
+        P1 = np.dot(K, np.hstack((np.eye(3), np.zeros((3, 1)))))
+        P2 = np.dot(K, np.hstack((R, t)))
+        points_hom = cv2.triangulatePoints(P1, P2, pts1.T, pts2.T)
+        points_3d.append(cv2.convertPointsFromHomogeneous(points_hom.T))
+
+        print(f"Triangulating {len(pts1)} points.")
+        print(f"Triangulated points (homogeneous): {points_hom.shape}")
+
+        points = cv2.convertPointsFromHomogeneous(points_hom.T).reshape(-1, 3)
+        valid_points = points[np.isfinite(points).all(axis=1)]
+        print(f"Image pair {i}: {valid_points.shape[0]} valid 3D points.")
+
+        if points_hom.size == 0:
+            print(f"Triangulation failed for Image pair {i}.")
+            continue
+
+        if len(points_3d) == 0:
+            print("No 3D points reconstructed.")
+        return np.array([])
+
+        print(f"Image pair {i}: {points_3d.shape[0]} points reconstructed.")
+
+    return np.vstack(points_3d)
+
+
+# Save 3D model as .ply file
+def save_point_cloud(points, output_file):
+    # Check:
+    if points.shape[0] == 0:
+        print("No points to save. Point cloud is empty.")
         return
 
-    # Detect and match features between the first two images
-    kp1, kp2, matches = detect_and_match_features(images[0], images[1])
+    cloud = o3d.geometry.PointCloud()
+    cloud.points = o3d.utility.Vector3dVector(points)
+    o3d.io.write_point_cloud(output_file, cloud)
+    print(f"3D model saved to {output_file}")
 
-    # Compute sparse point cloud
-    sparse_cloud = compute_point_cloud(matches, kp1, kp2, K)
 
-    # Generate dense point cloud
-    dense_cloud = generate_dense_point_cloud(sparse_cloud)
+# Main function
+def main():
+    input_folder = ("Gingy")
+    output_file = "output_model.ply"
 
-    # Create a 3D mesh
-    mesh = create_3d_mesh(dense_cloud)
+    images = load_images_from_folder(input_folder)
+    if not images:
+        print("No images found in the folder.")
+        return
 
-    # Save the mesh to a file
-    save_mesh(mesh)
+    keypoints, descriptors, matches = detect_and_match_features(images)
+    points_3d = reconstruct_3d(matches, keypoints, images)
+
+    if points_3d.size == 0:
+        print("Failed to generate 3D points.")
+        return
+
+    save_point_cloud(points_3d.reshape(-1, 3), output_file)
 
 
 if __name__ == "__main__":
-    # Folder containing captured images
-    image_folder = "test_images"
-
-    # Camera intrinsic matrix (example values, adjust based on your camera)
-    K = np.array([[495.21153939, 0, 335.75450282], [0, 504.81851369, 179.00894773], [0, 0, 1]])
-
-    # Run the reconstruction pipeline
-    main(image_folder, K)
+    main()
