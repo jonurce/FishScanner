@@ -1,60 +1,76 @@
+import torch
 import os
-import subprocess
+import numpy as np
+from imageio import imread
+from nerf import NERF  # Import your NeRF model class from the repo (this may vary based on the repo)
+import matplotlib.pyplot as plt
+
+# 1. Prepare your images
+image_folder = 'Pictures/SmallPlastic'  # Set the path to your images folder
+image_files = sorted([os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith(('.png', '.jpg', '.JPG', '.JPEG'))])
+
+# Read the images and convert them to tensors
+images = []
+for img_file in image_files:
+    img = imread(img_file)
+    img = torch.tensor(img).float()  # Convert image to tensor
+    images.append(img)
+
+# Convert list to tensor
+images = torch.stack(images)
+
+# 2. Load pre-trained NeRF model
+# Make sure to replace this with the appropriate class or function to load the model
+model = NERF()  # This will depend on the repo you're using
+model.load_state_dict(torch.load('.venv/Lib/site-packages/nerf/data/6a5j_model_1.pdb'))  # Replace with actual model path
+
+# Set model to evaluation mode
+model.eval()
+
+# 3. Prepare camera parameters (intrinsics and extrinsics)
+# For simplicity, we're assuming you have intrinsic parameters (K matrix)
+# You can use OpenCV or other tools to estimate the extrinsics (camera positions and orientations)
+K = np.array([[495.21153939, 0, 335.75450282], [0, 504.81851369, 179.00894773], [0, 0, 1]])
+
+# Assuming you've either estimated or approximated camera extrinsics (positions and orientations)
+# You can set them manually or use photogrammetry methods (like OpenCV) to estimate them.
+extrinsics = np.eye(4)  # Placeholder, replace with actual extrinsics
+
+# 4. Generate 3D reconstruction using NeRF
+# Assuming the model takes images and camera parameters and returns 3D points or a rendered scene
+output = model.forward(images, K, extrinsics)
+
+# 5. Convert the output to a 3D model (point cloud)
+# Assuming the model output contains 3D points or depth information
+depth_map = output['depth_map']  # Replace with actual output from the model
+
+# Convert the depth map to 3D points
+# This is a simple conversion assuming a basic camera model
+# For more complex models, you'd need to apply the correct transformation based on your camera parameters
+points_3d = []
+for i in range(depth_map.shape[0]):
+    for j in range(depth_map.shape[1]):
+        z = depth_map[i, j]
+        x = (j - K[0, 2]) * z / K[0, 0]
+        y = (i - K[1, 2]) * z / K[1, 1]
+        points_3d.append([x, y, z])
+
+# Convert points_3d to a NumPy array
+points_3d = np.array(points_3d)
 
 
-def run_colmap(image_folder, output_folder):
-    # Check if COLMAP is installed
-    colmap_path = 'colmap'  # Adjust if COLMAP is not in your PATH
+# 6. Save the 3D points as an OBJ file
+def save_as_obj(points, output_path):
+    with open(output_path, 'w') as file:
+        # Write vertices
+        for point in points:
+            file.write(f"v {point[0]} {point[1]} {point[2]}\n")
 
-    # Step 1: Create a new project directory
-    os.makedirs(output_folder, exist_ok=True)
-
-    # Step 2: Feature extraction
-    feature_extraction_cmd = [
-        colmap_path, 'feature_extractor',
-        '--database_path', os.path.join(output_folder, 'database.db'),
-        '--image_path', image_folder
-    ]
-    subprocess.run(feature_extraction_cmd)
-
-    # Step 3: Match features
-    feature_matching_cmd = [
-        colmap_path, 'exhaustive_matcher',
-        '--database_path', os.path.join(output_folder, 'database.db')
-    ]
-    subprocess.run(feature_matching_cmd)
-
-    # Step 4: Structure-from-Motion (SfM)
-    sparse_model_cmd = [
-        colmap_path, 'mapper',
-        '--database_path', os.path.join(output_folder, 'database.db'),
-        '--image_path', image_folder,
-        '--output_path', os.path.join(output_folder, 'sparse')
-    ]
-    subprocess.run(sparse_model_cmd)
-
-    # Step 5: Convert sparse model to dense model (optional)
-    dense_model_cmd = [
-        colmap_path, 'patch_match_stereo',
-        '--workspace_path', os.path.join(output_folder, 'dense'),
-        '--workspace_format', 'COLMAP',
-        '--PatchMatchStereo.geom_consistency', '1'
-    ]
-    subprocess.run(dense_model_cmd)
-
-    # Step 6: Export model to .obj format
-    export_model_cmd = [
-        colmap_path, 'model_converter',
-        '--input_path', os.path.join(output_folder, 'sparse', '0'),
-        '--output_path', os.path.join(output_folder, 'model.obj'),
-        '--output_type', 'OBJ'
-    ]
-    subprocess.run(export_model_cmd)
-
-    print("3D model has been generated and saved as model.obj")
+        # Optionally, you can write faces here if you want to connect points (triangles)
+        # For simplicity, we're not doing this here, but you can use Delaunay triangulation or other methods
 
 
-# Usage
-image_folder = 'Pictures/SmallPlastic'
-output_folder = 'output_3d_model'
-run_colmap(image_folder, output_folder)
+# Save the 3D points as an OBJ file
+save_as_obj(points_3d, 'output_model.obj')
+
+print("3D model saved as 'output_model.obj'")
