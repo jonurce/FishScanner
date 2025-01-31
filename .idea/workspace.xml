@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Fighting wit COLMAP">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Tried Nerf but nah">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3Dmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/3Dmodel.py" afterDir="false" />
     </list>
@@ -45,33 +44,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.3Dmodel.executor": "Run",
-    "Python.CalibrationPicturesShoot.executor": "Run",
-    "Python.CamTest.executor": "Run",
-    "Python.CameraCalibration.executor": "Run",
-    "Python.FishScan.executor": "Run",
-    "Python.OverlapPercentage.executor": "Run",
-    "Python.Pictures.executor": "Run",
-    "Python.ReadMesh.executor": "Run",
-    "Python.Try.executor": "Run",
-    "Python.VisualiseMesh.executor": "Run",
-    "Python.Visualize.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.3Dmodel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CalibrationPicturesShoot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CamTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CameraCalibration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FishScan.executor&quot;: &quot;Run&quot;,
+    &quot;Python.OverlapPercentage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Pictures.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ReadMesh.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Try.executor&quot;: &quot;Run&quot;,
+    &quot;Python.VisualiseMesh.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Visualize.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jonur\Workspace\FishScan\Pictures" />
       <recent name="C:\Users\jonur\Workspace\FishScan" />
       <recent name="C:\Users\jonur\Workspace\FishScan\Calibration" />
     </key>
@@ -100,7 +100,8 @@
       <workItem from="1737996179567" duration="6117000" />
       <workItem from="1738077913957" duration="10259000" />
       <workItem from="1738163105204" duration="9596000" />
-      <workItem from="1738252562082" duration="6440000" />
+      <workItem from="1738252562082" duration="6866000" />
+      <workItem from="1738336876110" duration="2361000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -206,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738176925935</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Tried Nerf but nah">
+      <option name="closed" value="true" />
+      <created>1738265031600</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738265031600</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +229,8 @@
     <MESSAGE value="Not sure if Open3D works" />
     <MESSAGE value="Testing 3D model with datasets" />
     <MESSAGE value="Fighting wit COLMAP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fighting wit COLMAP" />
+    <MESSAGE value="Tried Nerf but nah" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried Nerf but nah" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FishScan$FishScan.coverage" NAME="FishScan Coverage Results" MODIFIED="1737729488066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -232,7 +242,7 @@
     <SUITE FILE_PATH="coverage/FishScan$CamTest.coverage" NAME="CamTest Coverage Results" MODIFIED="1738001405742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CalibrationPicturesShoot.coverage" NAME="CalibrationPicturesShoot Coverage Results" MODIFIED="1738002056233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
     <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1738081970427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738259101907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738338528832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1738083765671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
   </component>
 </project>
