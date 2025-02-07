@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-# Set paths to COLMAP executable and your images
+# Set paths to COLMAP executable and your images TRY 2
 colmap_path = '/path/to/colmap'  # Path to the COLMAP binary (replace with actual path)
 image_dir = 'Pictures/SmallPlastic'  # Path to the directory containing the 2D images
 output_dir = 'output_3d_model'  # Directory to store the 3D model
