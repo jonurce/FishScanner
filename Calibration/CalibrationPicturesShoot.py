@@ -3,13 +3,13 @@ import os
 import time
 
 # Create the directory if it doesn't exist
-output_dir = "calibration_images"
+output_dir = "RotatingCup"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 # Open the external camera (use the appropriate index for your camera)
 # Typically, the first camera will have index 0, second camera 1, and so on.
-camera_index = 3  # Change this if your external camera is at a different index
+camera_index = 0  # Change this if your external camera is at a different index
 cap = cv2.VideoCapture(camera_index)
 
 # Check if the camera opened successfully
@@ -18,7 +18,7 @@ if not cap.isOpened():
     exit()
 
 # Set the capture interval (in seconds)
-capture_interval = 2
+capture_interval = 0.5
 
 # Start capturing images
 try:

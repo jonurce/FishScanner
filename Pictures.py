@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print("Integrated camera is not active. Skipping deactivation.")
 
     # Output folder for captured images
-    output_folder = "captured_images"
+    output_folder = "LigthBucket"
 
     # Capture images from all available cameras
     capture_images_from_cameras(output_folder)
