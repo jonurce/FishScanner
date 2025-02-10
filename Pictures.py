@@ -88,9 +88,8 @@ def capture_images_from_cameras(output_folder="captured_images"):
         return
 
     # Desired resolution
-    desired_width = 640
-    desired_height = 480
-
+    desired_width = 3840
+    desired_height = 2160
 
     print(f"Available cameras: {cameras}")
     for cam_index in cameras:

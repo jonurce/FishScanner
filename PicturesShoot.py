@@ -3,39 +3,49 @@ import os
 import time
 
 # Create the directory if it doesn't exist
-output_dir = "3cams30"
+output_dir = "3Dcam"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
-# Camera indices for the three cameras
-camera_indices = [0, 1, 2]  # Adjust these indices if necessary
+# Camera indices for the cameras you want to use
+camera_indices = [0]  # Update with actual camera indices
+
+# Set desired resolution (example: 4K resolution)
+desired_width = 4096
+desired_height = 2160
 
 # Set the capture interval (in seconds)
 capture_interval = 0.5
+
+# Open all cameras and set resolution
+caps = []
+for idx in camera_indices:
+    cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
+
+    if not cap.isOpened():
+        print(f"Error: Could not open video stream from camera {idx}.")
+        continue
+
+    # Set maximum resolution
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
+
+    caps.append(cap)
 
 # Start capturing images
 try:
     while True:
         frames = []
 
-        # Open, capture, and release each camera sequentially
-        for idx in camera_indices:
-            cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
-
-            if not cap.isOpened():
-                print(f"Error: Could not open video stream from camera {idx}.")
-                continue
-
+        # Capture frame-by-frame from each camera
+        for idx, cap in enumerate(caps):
             ret, frame = cap.read()
             if not ret:
-                print(f"Failed to grab frame from camera {idx}.")
-                cap.release()
-                continue
-
+                print(f"Failed to grab frame from camera {camera_indices[idx]}.")
+                break
             frames.append(frame)
-            cap.release()  # Close the camera after capturing the frame
 
-        # Check if frames were captured successfully
+        # Check if all frames were captured successfully
         if len(frames) != len(camera_indices):
             print("Not all frames were captured.")
             break
@@ -53,4 +63,7 @@ try:
 except KeyboardInterrupt:
     print("Image capture stopped by user.")
 finally:
+    # Release the cameras and close any OpenCV windows
+    for cap in caps:
+        cap.release()
     cv2.destroyAllWindows()
