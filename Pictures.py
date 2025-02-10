@@ -77,7 +77,6 @@ def get_available_cameras():
         index += 1
     return available_cameras
 
-
 def capture_images_from_cameras(output_folder="captured_images"):
     """Captures images from all available cameras and saves them to the output folder."""
     if not os.path.exists(output_folder):
@@ -88,6 +87,11 @@ def capture_images_from_cameras(output_folder="captured_images"):
         print("No cameras available.")
         return
 
+    # Desired resolution
+    desired_width = 640
+    desired_height = 480
+
+
     print(f"Available cameras: {cameras}")
     for cam_index in cameras:
         cap = cv2.VideoCapture(cam_index)
@@ -95,11 +99,16 @@ def capture_images_from_cameras(output_folder="captured_images"):
             print(f"Unable to access camera {cam_index}")
             continue
 
+        # Set the resolution
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
+
         ret, frame = cap.read()
         if ret:
-            filename = os.path.join(output_folder, f"camera_{cam_index}.jpg")
+            filename = os.path.join(output_folder, f"camera_{cam_index}.png")
             cv2.imwrite(filename, frame)
             print(f"Image captured from camera {cam_index} and saved as {filename}")
+
         else:
             print(f"Failed to capture image from camera {cam_index}")
 
@@ -123,7 +132,7 @@ if __name__ == "__main__":
         print("Integrated camera is not active. Skipping deactivation.")
 
     # Output folder for captured images
-    output_folder = "LigthBucket"
+    output_folder = "Testing"
 
     # Capture images from all available cameras
     capture_images_from_cameras(output_folder)
