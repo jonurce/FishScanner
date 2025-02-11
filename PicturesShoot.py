@@ -1,69 +1,55 @@
 import cv2
-import os
 import time
+import os
 
-# Create the directory if it doesn't exist
-output_dir = "3Dcam"
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+# Folder to save the images
+save_folder = 'LotsSingle'
 
-# Camera indices for the cameras you want to use
-camera_indices = [0]  # Update with actual camera indices
+# Create the folder if it doesn't exist
+if not os.path.exists(save_folder):
+    os.makedirs(save_folder)
 
-# Set desired resolution (example: 4K resolution)
-desired_width = 4096
-desired_height = 2160
+# List of camera indices (0, 1, 2, ..., 5 for 6 cameras)
+camera_indices = [0]
 
-# Set the capture interval (in seconds)
-capture_interval = 0.5
 
-# Open all cameras and set resolution
-caps = []
-for idx in camera_indices:
-    cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
+# Function to capture images from a single camera
+def capture_images_from_camera(camera_id):
+    cap = cv2.VideoCapture(camera_id)
 
+    # Check if the camera opened successfully
     if not cap.isOpened():
-        print(f"Error: Could not open video stream from camera {idx}.")
-        continue
+        print(f"Error: Could not open camera {camera_id}.")
+        return
 
-    # Set maximum resolution
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
+    # Capture a frame from the camera
+    ret, frame = cap.read()
+    if not ret:
+        print(f"Error: Failed to capture image from camera {camera_id}.")
+        return
 
-    caps.append(cap)
+    # Save the frame as an image file in the specified folder
+    filename = os.path.join(save_folder, f"camera_{camera_id}_image_{int(time.time())}.png")
+    cv2.imwrite(filename, frame)
 
-# Start capturing images
-try:
-    while True:
-        frames = []
+    # Release the camera when don
+    cap.release()
 
-        # Capture frame-by-frame from each camera
-        for idx, cap in enumerate(caps):
-            ret, frame = cap.read()
-            if not ret:
-                print(f"Failed to grab frame from camera {camera_indices[idx]}.")
-                break
-            frames.append(frame)
 
-        # Check if all frames were captured successfully
-        if len(frames) != len(camera_indices):
-            print("Not all frames were captured.")
-            break
+# Continuous loop to capture from each camera repeatedly
+if __name__ == "__main__":
+    try:
+        while True:
+            # Capture from each camera
+            for camera_id in camera_indices:
+                capture_images_from_camera(camera_id)
+                print(f"Captured image from camera {camera_id}.")
 
-        # Generate a unique filename for each image
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
-        for idx, frame in enumerate(frames):
-            image_filename = os.path.join(output_dir, f"camera{camera_indices[idx]}_image_{timestamp}.png")
-            cv2.imwrite(image_filename, frame)
-            print(f"Captured and saved: {image_filename}")
+            # Optional: Wait before starting the next loop, if needed
+            # time.sleep(1)
 
-        # Wait for the specified time before capturing the next set of images
-        time.sleep(capture_interval)
+    except KeyboardInterrupt:
+        print("\nImage capture process interrupted. Exiting...")
 
-except KeyboardInterrupt:
-    print("Image capture stopped by user.")
-finally:
-    # Release the cameras and close any OpenCV windows
-    for cap in caps:
-        cap.release()
+    # Clean up
     cv2.destroyAllWindows()
