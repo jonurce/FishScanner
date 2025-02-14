@@ -11,14 +11,13 @@ Created on Thu Jan 21 16:38:24 2021
 
 import serial #pip install pyserial
 import keyboard #pip install keyboard
-import pyrealsense2 as rs 
+import pyrealsense2 as rs
 import open3d as o3d #pip install open3d
 import numpy as np #pip install numpy
 import time
 from tkinter import font as tkfont
 import tkinter.filedialog
 import tkinter as tk
-from PIL import ImageTk
 from PIL import Image
 import ast
 from tkinter.ttk import Progressbar
@@ -338,19 +337,19 @@ class StartPage(tk.Frame):
         
         self.buttonFrame.grid(sticky="W",row = 0, column = 0)
         
-        self.load = Image.fromarray(np.zeros(shape=(480,848,3)), 'RGB')
+        self.load = 'Image'.fromarray(np.zeros(shape=(480,848,3)), 'RGB')
         self.left,self.upper,self.right,self.lower = 330,20,670,480
  
         # self.load = Image.open("testfoto.png")
-        self.render = ImageTk.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
+        self.render = 'Image'.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
         self.canvas = tk.Canvas(self, width = self.right-self.left, height = self.lower-self.upper)  
         self.canvas.grid(sticky="W",row = 0, column = 1)
         self.canvas.create_image(0,0, anchor='nw', image=self.render)    
         self.canvas.image = self.render  
 
     def showImage(self,iArray):
-        self.load = Image.fromarray(iArray, 'RGB')
-        self.render = ImageTk.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
+        self.load = 'Image'.fromarray(iArray, 'RGB')
+        self.render = 'Image'.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
         self.canvas.create_image(0,0, anchor='nw', image=self.render)    
         self.canvas.image = self.render
     
