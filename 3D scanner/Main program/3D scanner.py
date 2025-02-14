@@ -15,7 +15,7 @@ import pyrealsense2 as rs
 import open3d as o3d #pip install open3d
 import numpy as np #pip install numpy
 import time
-from tkinter import font as tkfont
+from tkinter import font as font
 import tkinter.filedialog
 import tkinter as tk
 from PIL import Image
@@ -207,7 +207,7 @@ class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-        self.title_font = tkfont.Font(family='Arial', size=18, weight="bold", slant="italic")
+        self.title_font = font.Font(family='Arial', size=18, weight="bold", slant="italic")
         self.title("Boest 3D-Scanner")
         # self.wm_iconbitmap('icoontje3dscan_WDJ_icon.ico')
         self.iconbitmap(default='icoontje3dscan_WDJ_icon.ico')
