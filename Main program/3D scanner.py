@@ -65,7 +65,6 @@ class Arduino():
         
     def close(self):
         self.s.close()
-    
 
 class Scan(): 
     def __init__(self,width,height,framerate,autoexposureFrames,backDistance):
@@ -107,7 +106,7 @@ class Scan():
         print("pipeline gestopt")
         
     def takeFoto(self):
-        print("foto gemaakt!")
+        print("Photo captured!")
         for i in range(self.autoexposureFrames):
             self.frameset = self.pipe.wait_for_frames()
         
@@ -257,7 +256,7 @@ class App(tk.Tk):
                 self.scan.processFoto(angle)
                 self.ard.waitForRotation()
                 self.update()
-                if angle >= 720:
+                if angle >= 420:
                     print("de cirkel is rond!")
                     self.frames["StartPage"].endProgress()
                     break
@@ -356,7 +355,7 @@ class StartPage(tk.Frame):
         self.canvas.image = self.render
     
     def startProgress(self):
-        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 720)
+        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 420)
         self.progress.grid(sticky="W",row = 1, column = 1, pady = 5) 
     
     def Progress(self,getal):
