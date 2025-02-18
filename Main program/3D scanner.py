@@ -249,14 +249,13 @@ class App(tk.Tk):
         self.frames["StartPage"].startProgress()
         try:
             while True:
-                
                 self.scan.takeFoto()
-                self.frames["StartPage"].showImage(self.scan.giveImageArray())              
+                self.frames["StartPage"].showImage(self.scan.giveImageArray())
                 angle = float(self.ard.giveAngle())
-                self.frames["StartPage"].Progress(angle)               
+                self.frames["StartPage"].Progress(angle)
                 self.ard.rotate(int(self.dictionary["stepSize"]))
                 self.scan.processFoto(angle)
-                self.ard.waitForRotation()    
+                self.ard.waitForRotation()
                 self.update()
                 if angle >= 720:
                     print("de cirkel is rond!")
@@ -352,8 +351,8 @@ class StartPage(tk.Frame):
 
     def showImage(self,iArray):
         self.load = Image.fromarray(iArray, 'RGB')
-        self.render = Image.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
-        self.canvas.create_image(0,0, anchor='nw', image=self.render)    
+        self.render = ImageTk.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
+        self.canvas.create_image(0,0, anchor='nw', image=self.render)
         self.canvas.image = self.render
     
     def startProgress(self):
