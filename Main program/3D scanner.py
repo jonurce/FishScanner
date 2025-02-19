@@ -256,7 +256,7 @@ class App(tk.Tk):
                 self.scan.processFoto(angle)
                 self.ard.waitForRotation()
                 self.update()
-                if angle >= 420:
+                if angle >= 360*1.5:
                     print("de cirkel is rond!")
                     self.frames["StartPage"].endProgress()
                     break
@@ -355,7 +355,7 @@ class StartPage(tk.Frame):
         self.canvas.image = self.render
     
     def startProgress(self):
-        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 420)
+        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 360*1.5)
         self.progress.grid(sticky="W",row = 1, column = 1, pady = 5) 
     
     def Progress(self,getal):

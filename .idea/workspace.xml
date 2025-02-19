@@ -45,39 +45,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.3D scanner.executor": "Run",
-    "Python.3Dmodel.executor": "Run",
-    "Python.CalibrationPicturesShoot.executor": "Run",
-    "Python.CamTest.executor": "Run",
-    "Python.CameraCalibration.executor": "Run",
-    "Python.FishScan.executor": "Run",
-    "Python.OverlapPercentage.executor": "Run",
-    "Python.Pictures.executor": "Run",
-    "Python.PicturesShoot.executor": "Run",
-    "Python.ReadMesh.executor": "Run",
-    "Python.SingleShoot.executor": "Run",
-    "Python.TEST.executor": "Run",
-    "Python.Try.executor": "Run",
-    "Python.VisualiseMesh.executor": "Run",
-    "Python.Visualize.executor": "Run",
-    "Python.Webcam.executor": "Run",
-    "Python.serialwin32.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_directory_selection": "C:/Users/jonur/Workspace/FishScan",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.3D scanner.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3Dmodel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CalibrationPicturesShoot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CamTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CameraCalibration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FishScan.executor&quot;: &quot;Run&quot;,
+    &quot;Python.OverlapPercentage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Pictures.executor&quot;: &quot;Run&quot;,
+    &quot;Python.PicturesShoot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ReadMesh.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SingleShoot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TEST.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Try.executor&quot;: &quot;Run&quot;,
+    &quot;Python.VisualiseMesh.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Visualize.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Webcam.executor&quot;: &quot;Run&quot;,
+    &quot;Python.serialwin32.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/jonur/Workspace/FishScan&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\manul\PycharmProjects\FishScanner" />
@@ -120,7 +120,8 @@
       <workItem from="1739541013421" duration="1786000" />
       <workItem from="1739543185260" duration="8342000" />
       <workItem from="1739805354407" duration="7738000" />
-      <workItem from="1739893359691" duration="9948000" />
+      <workItem from="1739893359691" duration="10064000" />
+      <workItem from="1739978582426" duration="5223000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -330,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739894767804</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Realsense Working">
+      <option name="closed" value="true" />
+      <created>1739903760448</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1739903760448</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,8 +372,8 @@
     <SUITE FILE_PATH="coverage/FishScan$Visualize.coverage" NAME="Visualize Coverage Results" MODIFIED="1738255742791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$SingleShoot.coverage" NAME="SingleShoot Coverage Results" MODIFIED="1739379893772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$VisualiseMesh.coverage" NAME="VisualiseMesh Coverage Results" MODIFIED="1738165354382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScanner$Webcam.coverage" NAME="Webcam Coverage Results" MODIFIED="1739805911109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScanner$3D_scanner.coverage" NAME="3D scanner Coverage Results" MODIFIED="1739902624451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main program" />
+    <SUITE FILE_PATH="coverage/FishScanner$Webcam.coverage" NAME="Webcam Coverage Results" MODIFIED="1739982589636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScanner$3D_scanner.coverage" NAME="3D scanner Coverage Results" MODIFIED="1739984122250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main program" />
     <SUITE FILE_PATH="coverage/FishScanner$TEST.coverage" NAME="TEST Coverage Results" MODIFIED="1739806852765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main program" />
     <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738338528832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$PicturesShoot.coverage" NAME="PicturesShoot Coverage Results" MODIFIED="1739294212012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
