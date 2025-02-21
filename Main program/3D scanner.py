@@ -21,7 +21,8 @@ import tkinter as tk
 import PIL
 from PIL import Image, ImageTk
 from tkinter import Tk, Label
-
+import os
+import cv2
 import ast
 from tkinter.ttk import Progressbar
 
@@ -105,7 +106,7 @@ class Scan():
         self.config = None
         print("pipeline gestopt")
         
-    def takeFoto(self):
+    def takeFoto(self,frame_count):
         print("Photo captured!")
         for i in range(self.autoexposureFrames):
             self.frameset = self.pipe.wait_for_frames()
@@ -135,6 +136,16 @@ class Scan():
         self.intrinsic = o3d.camera.PinholeCameraIntrinsic(self.w,self.h,self.fx,self.fy,self.px,self.py)
         self.depth_image = np.asanyarray(self.depth_frame.get_data())
         self.color_image = np.asanyarray(self.color_frame.get_data())
+
+        # Save depth and color images as PNG
+        output_folder = 'RS_captured_images'
+        os.makedirs(output_folder, exist_ok=True)
+        depth_image_path = os.path.join(output_folder, f"depth_{frame_count:04d}.png")
+        color_image_path = os.path.join(output_folder, f"color_{frame_count:04d}.png")
+        frame_count += 1
+        o3d.io.write_image(depth_image_path, o3d.geometry.Image(self.depth_image))
+        cv2.imwrite(color_image_path, self.color_image)
+        return frame_count
         
     def processFoto(self,angle):
         print(angle)
@@ -247,8 +258,9 @@ class App(tk.Tk):
         self.scan.startPipeline()
         self.frames["StartPage"].startProgress()
         try:
+            frame_count = 0
             while True:
-                self.scan.takeFoto()
+                frame_count = self.scan.takeFoto(frame_count)
                 self.frames["StartPage"].showImage(self.scan.giveImageArray())
                 angle = float(self.ard.giveAngle())
                 self.frames["StartPage"].Progress(angle)
@@ -256,7 +268,7 @@ class App(tk.Tk):
                 self.scan.processFoto(angle)
                 self.ard.waitForRotation()
                 self.update()
-                if angle >= 360*3:
+                if angle >= 360*1.5:
                     print("de cirkel is rond!")
                     self.frames["StartPage"].endProgress()
                     break
@@ -338,8 +350,8 @@ class StartPage(tk.Frame):
         
         self.buttonFrame.grid(sticky="W",row = 0, column = 0)
         
-        self.load = Image.fromarray(np.zeros(shape=(480,848,3)), 'RGB')
-        self.left,self.upper,self.right,self.lower = 330,20,670,480
+        self.load = Image.fromarray(np.zeros(shape=(720,1280,3)), 'RGB')
+        self.left,self.upper,self.right,self.lower = 498,0,1011,720
  
         # self.load = Image.open("testfoto.png")
         self.render = ImageTk.PhotoImage(self.load.crop((self.left,self.upper,self.right,self.lower)))
@@ -355,7 +367,7 @@ class StartPage(tk.Frame):
         self.canvas.image = self.render
     
     def startProgress(self):
-        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 360*3)
+        self.progress = Progressbar(self,orient="horizontal",length=self.right-self.left,mode='determinate',maximum = 360*1.5)
         self.progress.grid(sticky="W",row = 1, column = 1, pady = 5) 
     
     def Progress(self,getal):
@@ -444,8 +456,8 @@ class SettingsPage(tk.Frame):
     def defaultSettings(self):
         # het kan ook direct in de insert, maar zo (met de tussenstap) past ie ook gelijk de dictionary aan
         self.controller.dictionary["stepSize"] = 256
-        self.controller.dictionary["widthFrame"] = 848
-        self.controller.dictionary["heightFrame"] = 480
+        self.controller.dictionary["widthFrame"] = 1280
+        self.controller.dictionary["heightFrame"] = 720
         self.controller.dictionary["COMport"] = "COM3"
         self.controller.dictionary["baudrate"] = 9600
         self.controller.dictionary["k_points"] = 10
