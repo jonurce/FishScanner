@@ -1,1 +1,1 @@
-{'stepSize': '256', 'widthFrame': '848', 'heightFrame': '480', 'COMport': 'COM3', 'baudrate': '9600', 'k_points': '30', 'std_ratio': '0.1', 'depth': '8', 'iterations': '20'}
+{'stepSize': '256', 'widthFrame': '848', 'heightFrame': '480', 'COMport': 'COM3', 'baudrate': '9600', 'k_points': '5', 'std_ratio': '0.2', 'depth': '8', 'iterations': '8'}
