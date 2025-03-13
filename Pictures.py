@@ -88,8 +88,8 @@ def capture_images_from_cameras(output_folder="captured_images"):
         return
 
     # Desired resolution
-    desired_width = 3840
-    desired_height = 2160
+    desired_width = 3264
+    desired_height = 2448
 
     print(f"Available cameras: {cameras}")
     for cam_index in cameras:
@@ -99,15 +99,16 @@ def capture_images_from_cameras(output_folder="captured_images"):
             continue
 
         # Set the resolution
+        cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1)  # Enable auto exposure
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
+        cap.set(cv2.CAP_PROP_AUTOFOCUS, 1)
 
         ret, frame = cap.read()
         if ret:
             filename = os.path.join(output_folder, f"camera_{cam_index}.png")
             cv2.imwrite(filename, frame)
             print(f"Image captured from camera {cam_index} and saved as {filename}")
-
         else:
             print(f"Failed to capture image from camera {cam_index}")
 

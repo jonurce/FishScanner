@@ -10,11 +10,11 @@ if not os.path.exists(save_folder):
     os.makedirs(save_folder)
 
 # Open the camera (0 is usually the default camera)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # Set resolution to 1280x720
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3840)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2160)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2448)
 
 # Check if the camera is opened successfully
 if not cap.isOpened():
