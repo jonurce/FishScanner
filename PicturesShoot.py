@@ -3,7 +3,7 @@ import time
 import os
 
 # Folder to save the images
-save_folder = 'TestBox18'
+save_folder = 'TestBucket18Aligned90deg'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
