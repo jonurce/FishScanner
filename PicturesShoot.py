@@ -3,7 +3,7 @@ import time
 import os
 
 # Folder to save the images
-save_folder = 'TestBucket18Aligned90deg'
+save_folder = 'Calibrating'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -34,9 +34,9 @@ def capture_images_from_camera(camera_id):
         return
 
     # Save the frame as an image file in the specified folder
-    filename = os.path.join(save_folder, f"camera_{camera_id}_image_{int(time.time())}.jpg")
-    cv2.imwrite(filename, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
-    #cv2.imwrite(filename, frame)
+    filename = os.path.join(save_folder, f"camera_{camera_id}_image_{int(time.time())}.png")
+    #cv2.imwrite(filename, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
+    cv2.imwrite(filename, frame)
 
     # Release the camera when don
     cap.release()

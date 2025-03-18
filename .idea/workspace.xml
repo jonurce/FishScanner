@@ -5,8 +5,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Testing Higger Resolution Cameras">
+      <change afterPath="$PROJECT_DIR$/ShootCalibrated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USBHubShoot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/CalibrationPicturesShoot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/CameraCalibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration/CameraCalibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191407.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191409.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191411.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191413.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191415.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191417.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191419.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191421.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191423.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191425.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191427.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191429.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191431.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191433.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191435.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191437.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191439.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191459.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191501.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191503.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191505.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191507.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191509.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191511.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191513.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191515.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191517.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191519.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191521.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191523.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191525.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191527.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191529.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191531.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191533.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191535.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191537.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191539.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191541.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191543.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration/calibration_images/image_20250127_191545.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PicturesShoot.py" beforeDir="false" afterPath="$PROJECT_DIR$/PicturesShoot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output_3d_modeldatabase.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,73 +92,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.3Dmodel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CalibrationPicturesShoot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CamTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CameraCalibration.executor&quot;: &quot;Run&quot;,
-    &quot;Python.FishScan.executor&quot;: &quot;Run&quot;,
-    &quot;Python.OverlapPercentage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Pictures.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PicturesShoot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ReadMesh.executor&quot;: &quot;Run&quot;,
-    &quot;Python.SingleShoot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Try.executor&quot;: &quot;Run&quot;,
-    &quot;Python.VisualiseMesh.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Visualize.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Webcam.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/jonur/Workspace/FishScan&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jonur/Workspace/FishLab/FishScan&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.3Dmodel.executor": "Run",
+    "Python.CalibrationPicturesShoot.executor": "Run",
+    "Python.CamTest.executor": "Run",
+    "Python.CameraCalibration.executor": "Run",
+    "Python.FishScan.executor": "Run",
+    "Python.OverlapPercentage.executor": "Run",
+    "Python.Pictures.executor": "Run",
+    "Python.PicturesShoot.executor": "Run",
+    "Python.ReadMesh.executor": "Run",
+    "Python.ShootCalibrated.executor": "Run",
+    "Python.SingleShoot.executor": "Run",
+    "Python.Try.executor": "Run",
+    "Python.USBHubShoot.executor": "Run",
+    "Python.VisualiseMesh.executor": "Run",
+    "Python.Visualize.executor": "Run",
+    "Python.Webcam.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Users/jonur/Workspace/FishScan",
+    "last_opened_file_path": "C:/Users/jonur/Workspace/FishLab/FishScan",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jonur\Workspace\FishScan\Pictures" />
       <recent name="C:\Users\jonur\Workspace\FishScan" />
       <recent name="C:\Users\jonur\Workspace\FishScan\Calibration" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Pictures" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="FishScan" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Pictures.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.Pictures" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -150,6 +170,8 @@
       <workItem from="1741868350935" duration="231000" />
       <workItem from="1741879746139" duration="1440000" />
       <workItem from="1741950414542" duration="5267000" />
+      <workItem from="1742047931598" duration="77000" />
+      <workItem from="1742310870804" duration="6347000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -311,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741868432514</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Testing Higger Resolution Cameras">
+      <option name="closed" value="true" />
+      <created>1742047992678</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1742047992678</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,18 +363,20 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FishScan$SingleShoot.coverage" NAME="SingleShoot Coverage Results" MODIFIED="1741620233871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$USBHubShoot.coverage" NAME="USBHubShoot Coverage Results" MODIFIED="1742317362848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$VisualiseMesh.coverage" NAME="VisualiseMesh Coverage Results" MODIFIED="1738165354382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Webcam.coverage" NAME="Webcam Coverage Results" MODIFIED="1741620119740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$OverlapPercentage.coverage" NAME="OverlapPercentage Coverage Results" MODIFIED="1738087038224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$PicturesShoot.coverage" NAME="PicturesShoot Coverage Results" MODIFIED="1741966731646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$PicturesShoot.coverage" NAME="PicturesShoot Coverage Results" MODIFIED="1742316447427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CalibrationPicturesShoot.coverage" NAME="CalibrationPicturesShoot Coverage Results" MODIFIED="1738938213090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
     <SUITE FILE_PATH="coverage/FishScan$FishScan.coverage" NAME="FishScan Coverage Results" MODIFIED="1737729488066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Try.coverage" NAME="Try Coverage Results" MODIFIED="1737729381668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$ReadMesh.coverage" NAME="ReadMesh Coverage Results" MODIFIED="1737999277623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Visualize.coverage" NAME="Visualize Coverage Results" MODIFIED="1738255742791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$ShootCalibrated.coverage" NAME="ShootCalibrated Coverage Results" MODIFIED="1742315858995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CamTest.coverage" NAME="CamTest Coverage Results" MODIFIED="1741620042790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1741880097536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1742313752000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738338528832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1738083765671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
+    <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1742315458325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
   </component>
 </project>
