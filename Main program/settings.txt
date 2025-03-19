@@ -1,1 +1,0 @@
-{'stepSize': '512', 'widthFrame': '1280', 'heightFrame': '720', 'COMport': 'COM3', 'baudrate': '9600', 'k_points': '40', 'std_ratio': '2', 'depth': '7', 'iterations': '8'}
