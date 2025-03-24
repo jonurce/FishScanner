@@ -4,8 +4,8 @@ import cv2
 cap = cv2.VideoCapture(0)
 
 # Set resolution to 1280x720
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2448)
 
 # Check if the camera is opened successfully
 if not cap.isOpened():

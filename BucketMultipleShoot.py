@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 # Folder to save the images
-save_folder = '96images'
+save_folder = '96imagesFish'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -12,7 +12,7 @@ if not os.path.exists(save_folder):
 
 # List of camera indices (0, 1, 2, ..., 5 for 6 cameras)
 #camera_indices = [0,1,2,3,4,5]
-number_of_cameras = 6
+number_of_cameras = 16
 camera_indices = np.arange(0,number_of_cameras,1)
 
 
