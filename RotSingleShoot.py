@@ -4,14 +4,14 @@ import os
 import numpy as np
 
 # Folder to save the images
-save_folder = 'FishNoBackg'
+save_folder = 'FishNoBackg3'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
     os.makedirs(save_folder)
 
 # Open the camera (0 is usually the default camera)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Set resolution to 1280x720 (Note: your original was 3264x2448)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)

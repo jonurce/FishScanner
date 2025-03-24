@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 # Folder to save the images
-save_folder = 'FishNoBack_3cams'
+save_folder = 'FishNoBack_2cams'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -17,7 +17,7 @@ def remove_white_background(frame):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     # Adjusted range for white/grayish colors in HSV
-    lower_white = np.array([0, 0, 150])  # Lower brightness threshold to include grays
+    lower_white = np.array([0, 0, 100])  # Lower brightness threshold to include grays
     upper_white = np.array([180, 50, 255])  # Broader saturation range for grayish tones
 
     # Create a mask for white/gray areas
@@ -36,10 +36,10 @@ def remove_white_background(frame):
 
 
 # List of camera indices (adjust if your cameras have different indices)
-number_of_cameras = 3
+number_of_cameras = 2
 camera_indices = np.arange(0,number_of_cameras,1)
 capture_duration = 30  # Duration per camera in seconds
-frame_interval = 0.5  # Time between frames in seconds
+frame_interval = 0.0  # Time between frames in seconds
 
 try:
     for cam_index in camera_indices:
