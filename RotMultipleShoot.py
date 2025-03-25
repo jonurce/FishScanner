@@ -41,7 +41,7 @@ def remove_white_background(frame):
 # List of camera indices (adjust if your cameras have different indices)
 number_of_cameras = 2
 camera_indices = np.arange(0,number_of_cameras,1)
-capture_duration = 20  # Duration per camera in seconds
+capture_duration = 40  # Duration per camera in seconds
 frame_interval = 0.0  # Time between frames in seconds
 
 try:
