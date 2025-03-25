@@ -2,9 +2,12 @@ import cv2
 import time
 import os
 import numpy as np
+import pyttsx3
+
+engine = pyttsx3.init()
 
 # Folder to save the images
-save_folder = 'FishNoBack_2cams'
+save_folder = 'Folder'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -38,11 +41,15 @@ def remove_white_background(frame):
 # List of camera indices (adjust if your cameras have different indices)
 number_of_cameras = 2
 camera_indices = np.arange(0,number_of_cameras,1)
-capture_duration = 30  # Duration per camera in seconds
+capture_duration = 20  # Duration per camera in seconds
 frame_interval = 0.0  # Time between frames in seconds
 
 try:
     for cam_index in camera_indices:
+        if cam_index == 0:
+            engine.say(f"Fish scanning process started! I will tell you when to spin that fish! Be ready!")
+            engine.runAndWait()
+
         # Open the current camera
         cap = cv2.VideoCapture(cam_index)
 
@@ -56,8 +63,11 @@ try:
             continue  # Skip to the next camera if this one fails
 
         print(f"Starting capture with camera {cam_index}...")
+        engine.say(f"Starting capture with camera {cam_index}! Spin that fish!")
+        engine.runAndWait()
         start_time = time.time()
 
+        message_interval = 5;
         while (time.time() - start_time) < capture_duration:
             ret, frame = cap.read()  # Capture frame from the camera
             if not ret:
@@ -74,9 +84,20 @@ try:
             # Wait for 500 milliseconds (0.5 seconds) before capturing the next image
             time.sleep(frame_interval)
 
+            if (time.time() - start_time) > message_interval:
+                engine.say(f"Keep spinning that fish!")
+                engine.runAndWait()
+                message_interval += 5;
+
         # Release the current camera before switching
         cap.release()
         print(f"Finished capture with camera {cam_index}.")
+        engine.say(f"Finished capture with camera {cam_index}. You can rest rotating the camera.")
+        engine.runAndWait()
+
+        if cam_index == number_of_cameras-1:
+            engine.say(f"Fish scanning process finished! Hell yeah fish! Good fish job!")
+            engine.runAndWait()
 
 except KeyboardInterrupt:
     print("\nImage capture process interrupted. Exiting...")

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e4ad446-8e9b-4717-a0da-4ce43a91f571" name="Changes" comment="Rotation with one camera">
+      <change afterPath="$PROJECT_DIR$/Voice.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RotMultipleShoot.py" beforeDir="false" afterPath="$PROJECT_DIR$/RotMultipleShoot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RotSingleShoot.py" beforeDir="false" afterPath="$PROJECT_DIR$/RotSingleShoot.py" afterDir="false" />
@@ -65,6 +66,7 @@
     "Python.USBHubShoot.executor": "Run",
     "Python.VisualiseMesh.executor": "Run",
     "Python.Visualize.executor": "Run",
+    "Python.Voice.executor": "Run",
     "Python.Webcam.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -133,7 +135,8 @@
       <workItem from="1742422018153" duration="17000" />
       <workItem from="1742480441068" duration="7302000" />
       <workItem from="1742652909954" duration="29000" />
-      <workItem from="1742829561529" duration="8431000" />
+      <workItem from="1742829561529" duration="8454000" />
+      <workItem from="1742915651863" duration="6031000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -335,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742833515531</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Rotation with one camera">
+      <option name="closed" value="true" />
+      <created>1742848796764</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742848796764</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,13 +370,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="Rotation with one camera" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FishScan$Voice.coverage" NAME="Voice Coverage Results" MODIFIED="1742922809851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$USBHubShoot.coverage" NAME="USBHubShoot Coverage Results" MODIFIED="1742317362848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$SingleShoot.coverage" NAME="SingleShoot Coverage Results" MODIFIED="1742832086391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$VisualiseMesh.coverage" NAME="VisualiseMesh Coverage Results" MODIFIED="1738165354382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Webcam.coverage" NAME="Webcam Coverage Results" MODIFIED="1742829967017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$OverlapPercentage.coverage" NAME="OverlapPercentage Coverage Results" MODIFIED="1738087038224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$PicturesShoot.coverage" NAME="PicturesShoot Coverage Results" MODIFIED="1742830004675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$RotMultipleShoot.coverage" NAME="RotMultipleShoot Coverage Results" MODIFIED="1742837442596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$RotMultipleShoot.coverage" NAME="RotMultipleShoot Coverage Results" MODIFIED="1742923736233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CalibrationPicturesShoot.coverage" NAME="CalibrationPicturesShoot Coverage Results" MODIFIED="1738938213090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
     <SUITE FILE_PATH="coverage/FishScan$ParallelShoot.coverage" NAME="ParallelShoot Coverage Results" MODIFIED="1742404160458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$FishScan.coverage" NAME="FishScan Coverage Results" MODIFIED="1737729488066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -375,7 +387,7 @@
     <SUITE FILE_PATH="coverage/FishScan$ShootCalibrated.coverage" NAME="ShootCalibrated Coverage Results" MODIFIED="1742315858995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CamTest.coverage" NAME="CamTest Coverage Results" MODIFIED="1741620042790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$Pictures.coverage" NAME="Pictures Coverage Results" MODIFIED="1742313752000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FishScan$RotSingleShoot.coverage" NAME="RotSingleShoot Coverage Results" MODIFIED="1742837563686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FishScan$RotSingleShoot.coverage" NAME="RotSingleShoot Coverage Results" MODIFIED="1742915986875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$3Dmodel.coverage" NAME="3Dmodel Coverage Results" MODIFIED="1738338528832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FishScan$CameraCalibration.coverage" NAME="CameraCalibration Coverage Results" MODIFIED="1742315458325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Calibration" />
   </component>
