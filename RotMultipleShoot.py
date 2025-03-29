@@ -7,7 +7,7 @@ import pyttsx3
 engine = pyttsx3.init()
 
 # Folder to save the images
-save_folder = 'Folder'
+save_folder = 'FishTest4'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -20,7 +20,7 @@ def remove_white_background(frame):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     # Adjusted range for white/grayish colors in HSV
-    lower_white = np.array([0, 0, 100])  # Lower brightness threshold to include grays
+    lower_white = np.array([0, 0, 70])  # Lower brightness threshold to include grays
     upper_white = np.array([180, 50, 255])  # Broader saturation range for grayish tones
 
     # Create a mask for white/gray areas
@@ -39,9 +39,9 @@ def remove_white_background(frame):
 
 
 # List of camera indices (adjust if your cameras have different indices)
-number_of_cameras = 2
+number_of_cameras = 4
 camera_indices = np.arange(0,number_of_cameras,1)
-capture_duration = 40  # Duration per camera in seconds
+capture_duration = 30  # Duration per camera in seconds
 frame_interval = 0.0  # Time between frames in seconds
 
 try:
@@ -75,11 +75,11 @@ try:
                 break
 
             # Remove white/gray background
-            frame_processed = remove_white_background(frame)
+            # frame = remove_white_background(frame)
 
             # Save the frame with camera index in the filename
             filename = os.path.join(save_folder, f"cam{cam_index}_image_{int(time.time() * 1000)}.png")
-            cv2.imwrite(filename, frame_processed)
+            cv2.imwrite(filename, frame)
 
             # Wait for 500 milliseconds (0.5 seconds) before capturing the next image
             time.sleep(frame_interval)
