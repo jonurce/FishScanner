@@ -7,7 +7,7 @@ import pyttsx3
 engine = pyttsx3.init()
 
 # Folder to save the images
-save_folder = 'FishTest4'
+save_folder = 'FishTest'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -15,33 +15,33 @@ if not os.path.exists(save_folder):
 
 
 # Function to remove white/gray background
-def remove_white_background(frame):
+def remove_green_background(frame):
     # Convert BGR to HSV color space
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Adjusted range for white/grayish colors in HSV
-    lower_white = np.array([0, 0, 70])  # Lower brightness threshold to include grays
-    upper_white = np.array([180, 50, 255])  # Broader saturation range for grayish tones
+    # Define HSV range for green color
+    lower_green = np.array([35, 40, 130])  # Adjusted lower bound for green
+    upper_green = np.array([85, 255, 255])  # Adjusted upper bound for green
 
-    # Create a mask for white/gray areas
-    mask = cv2.inRange(hsv, lower_white, upper_white)
+    # Create a mask for green areas
+    mask = cv2.inRange(hsv, lower_green, upper_green)
 
-    # Invert the mask (white/gray becomes black, non-white becomes white)
+    # Invert the mask (green becomes black, non-green becomes white)
     mask_inv = cv2.bitwise_not(mask)
 
     # Convert the original image to BGRA (adding alpha channel)
     frame_bgra = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
 
-    # Set alpha channel to 0 (transparent) where mask is white/gray
+    # Set alpha channel to 0 (transparent) where mask is green
     frame_bgra[:, :, 3] = mask_inv
 
     return frame_bgra
 
 
 # List of camera indices (adjust if your cameras have different indices)
-number_of_cameras = 4
+number_of_cameras = 8
 camera_indices = np.arange(0,number_of_cameras,1)
-capture_duration = 30  # Duration per camera in seconds
+capture_duration = 5  # Duration per camera in seconds
 frame_interval = 0.0  # Time between frames in seconds
 
 try:
@@ -75,7 +75,7 @@ try:
                 break
 
             # Remove white/gray background
-            # frame = remove_white_background(frame)
+            frame = remove_green_background(frame)
 
             # Save the frame with camera index in the filename
             filename = os.path.join(save_folder, f"cam{cam_index}_image_{int(time.time() * 1000)}.png")
