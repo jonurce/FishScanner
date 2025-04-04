@@ -7,7 +7,7 @@ import pyttsx3
 engine = pyttsx3.init()
 
 # Folder to save the images
-save_folder = 'FishTest'
+save_folder = 'FishTest3'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -41,7 +41,7 @@ def remove_green_background(frame):
 # List of camera indices (adjust if your cameras have different indices)
 number_of_cameras = 8
 camera_indices = np.arange(0,number_of_cameras,1)
-capture_duration = 5  # Duration per camera in seconds
+capture_duration = 30  # Duration per camera in seconds
 frame_interval = 0.0  # Time between frames in seconds
 
 try:
@@ -51,7 +51,7 @@ try:
             engine.runAndWait()
 
         # Open the current camera
-        cap = cv2.VideoCapture(cam_index)
+        cap = cv2.VideoCapture(cam_index, cv2.CAP_DSHOW)
 
         # Set resolution to 3264x2448
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 3264)
@@ -67,7 +67,7 @@ try:
         engine.runAndWait()
         start_time = time.time()
 
-        message_interval = 5;
+        message_interval = 10;
         while (time.time() - start_time) < capture_duration:
             ret, frame = cap.read()  # Capture frame from the camera
             if not ret:
@@ -75,7 +75,7 @@ try:
                 break
 
             # Remove white/gray background
-            frame = remove_green_background(frame)
+            #frame = remove_green_background(frame)
 
             # Save the frame with camera index in the filename
             filename = os.path.join(save_folder, f"cam{cam_index}_image_{int(time.time() * 1000)}.png")
