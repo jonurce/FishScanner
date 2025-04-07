@@ -6,8 +6,8 @@ from multiprocessing import Pool
 from functools import partial
 
 # Define folders
-input_folder = "FishGreenTest3"
-output_folder = "FishGreenNoBack3"
+input_folder = "FishGreenTest"
+output_folder = "FishGreenNoBack"
 
 # Create output folder if it doesn't exist
 if not os.path.exists(output_folder):
