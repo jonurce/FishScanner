@@ -28,7 +28,7 @@ def detect_edges(filename, input_folder, output_folder):
     blurred = cv2.GaussianBlur(gray, (3, 3), 0)
 
     # Perform Canny edge detection
-    edges = cv2.Canny(gray, threshold1=100, threshold2=200)
+    edges = cv2.Canny(blurred, threshold1=100, threshold2=200)
 
     # Save the edge-detected image
     cv2.imwrite(output_path, edges)
