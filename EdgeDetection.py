@@ -25,10 +25,13 @@ def detect_edges(filename, input_folder, output_folder):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Apply Gaussian blur to reduce noise (optional but recommended for Canny)
-    blurred = cv2.GaussianBlur(gray, (3, 3), 0)
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
 
     # Perform Canny edge detection
-    edges = cv2.Canny(blurred, threshold1=100, threshold2=200)
+    edges = cv2.Canny(blurred, threshold1=0, threshold2=50)
+
+    kernel = np.ones((5, 5), np.uint8)
+    edges = cv2.dilate(edges, kernel, iterations=1)
 
     # Save the edge-detected image
     cv2.imwrite(output_path, edges)
@@ -53,5 +56,5 @@ def process_images():
     print("All images processed!")
 
 if __name__ == '__main__':
-    detect_edges("cam0_image_1743762635255.png", input_folder, output_folder)
-    #process_images()
+    #detect_edges("cam0_image_1743762635255.png", input_folder, output_folder)
+    process_images()
