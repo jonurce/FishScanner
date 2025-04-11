@@ -7,7 +7,7 @@ import pyttsx3
 engine = pyttsx3.init()
 
 # Folder to save the images
-save_folder = 'FishTest3'
+save_folder = 'FishTestPink2-64,5cm'
 
 # Create the folder if it doesn't exist
 if not os.path.exists(save_folder):
@@ -87,7 +87,7 @@ try:
             if (time.time() - start_time) > message_interval:
                 engine.say(f"Keep spinning that fish!")
                 engine.runAndWait()
-                message_interval += 5;
+                message_interval += 10;
 
         # Release the current camera before switching
         cap.release()

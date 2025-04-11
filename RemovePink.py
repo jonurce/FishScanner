@@ -6,8 +6,8 @@ from multiprocessing import Pool
 from functools import partial
 
 # Define folders
-input_folder = "FishPinkTest"
-output_folder = "FishPinkNoBack"
+input_folder = "FishPink2-64,5cm"
+output_folder = "FishPink2NoBack"
 
 # Create output folder if it doesn't exist
 if not os.path.exists(output_folder):
@@ -31,8 +31,8 @@ def remove_pink_background(filename, input_folder, output_folder):
     hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
 
     # Define pink range in HSV (adjust as needed)
-    lower_pink = np.array([260 // 2, 10 * 255 // 100, 10 * 255 // 100])  # H/2, S%, V% to OpenCV scale
-    upper_pink = np.array([330 // 2, 255, 255])  # H/2, 100%, 100%
+    lower_pink = np.array([270 // 2, 20 * 255 // 100, 10 * 255 // 100])  # H/2, S%, V% to OpenCV scale
+    upper_pink = np.array([360 // 2, 255, 255])  # H/2, 100%, 100%
 
     # Create mask (fast with OpenCV)
     pink_mask = cv2.inRange(hsv, lower_pink, upper_pink)
